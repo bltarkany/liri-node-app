@@ -1,0 +1,20 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "LIRI Bot is a CLI App providing the an entertainment search service in one simplified loaction. LIRI will provide the search service by utilizing Spotify for music, Bands in Town for concerts and OMDB for movies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bltarkany/liri-node-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bltarkany/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/bltarkany/liri-node-app#readme"
+}

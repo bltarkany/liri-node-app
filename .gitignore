@@ -1,0 +1,6 @@
+# npm packages
+node_modules
+# unsure
+.DS_Store
+# Spotify API Keys
+.env
