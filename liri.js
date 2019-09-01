@@ -44,14 +44,14 @@ switch (commands) {
 // bands in town function for retrieving info
 function bands(artists) {
     var artists = search;
-    console.log(artists);
+    // console.log(artists);
     axios.get("https://rest.bandsintown.com/artists/" + artists + "/events?app_id=codingbootcamp")
         .then(
 
             function (response) {
                 // console.log(response.data);
                 for (var i = 0; i < response.data.length; i++) {
-                    console.log(artists);
+                    console.log("\n" + artists);
                     console.log("----------");
                     console.log("Venue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + ", " + response.data[i].venue.country + "\nDate of event: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n");
 
@@ -68,27 +68,31 @@ function bands(artists) {
 
 // spotify function for retriveing info
 function songs(songTitle) {
+    search = a.slice(3).join("+");
     var songTitle;
 
     if (!search) {
-        songTitle = "The Sign";
+        songTitle = "The+Sign";
     } else {
         songTitle = search;
     }
+    // console.log(songTitle);
 
-    console.log(songTitle);
+    // constructor
+    var spotify = new Spotify(keys.spotify);
 
     spotify
-        .search({
-            type: 'track',
-            query: songTitle,
-            limit: 20
-        })
-        .then(function (response) {
-            console.log(response.data);
+        .request('https://api.spotify.com/v1/search?q=' + songTitle + '&type=track&market=us&limit=10')
+        .then(function (data) {
+            // console.log(data);
+            // console.log(data.tracks.items[0]);
+            for (var i = 0; i < data.tracks.items.length; i++) {
+                console.log(data.tracks.items[i].name + "\n---------");
+                console.log("Artist(s): " + data.tracks.items[i].artists[0].name + "\nAlbum: " + data.tracks.items[i].album.name + "\nPreview Link: " + data.tracks.items[i].preview_url + "\n");
+            }
         })
         .catch(function (err) {
-            console.log(err);
+            console.error('Error occurred: ' + err);
         });
 
 };
@@ -97,24 +101,24 @@ function songs(songTitle) {
 function movies(title) {
     search = a.slice(3).join("+");
     var title;
-    
-    if(!search) {
+
+    if (!search) {
         title = "Mr Nobody";
-    } else{
+    } else {
         title = search;
     }
 
-    console.log(title);
+    // console.log(title);
 
     axios
-    .get("http://www.omdbapi.com/?apikey=trilogy&t=" + title + "&plot=short&limit=4")
-    .then(
-        function(response) {
-            // console.log(response.data);
+        .get("http://www.omdbapi.com/?apikey=trilogy&t=" + title + "&plot=short&limit=4")
+        .then(
+            function (response) {
+                // console.log(response.data);
 
-            console.log("Title: " + response.data.Title);
-            console.log("--------------\n");
-            console.log("Year Released: " + response.data.Year + "\nIMDB Rating: " + response.data.Ratings[0].Value + "\nRotten Tomatoes: " + response.data.Ratings[1].Value + "\nProduced in: " + response.data.Country + "\nLanguages: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " + response.data.Actors + "\n");
-        }
-    )
+                console.log("\nTitle: " + response.data.Title);
+                console.log("--------------\n");
+                console.log("Year Released: " + response.data.Year + "\nIMDB Rating: " + response.data.Ratings[0].Value + "\nRotten Tomatoes: " + response.data.Ratings[1].Value + "\nProduced in: " + response.data.Country + "\nLanguages: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " + response.data.Actors + "\n");
+            }
+        )
 };
