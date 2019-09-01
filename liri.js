@@ -18,9 +18,15 @@ var spotify = new Spotify(keys.spotify);
 
 
 // global process.argv variables
-var a = process.argv;
-var commands = a[2];
-var search = a.slice(3).join("");
+// var a = process.argv;
+var commands = process.argv[2];
+var search = process.argv.slice(3).join("+");
+
+
+// run the input arguments
+function runInfo(arg1, arg2) {
+    infoSwitch(arg1, arg2);
+};
 
 // switching between arguments
 function infoSwitch(commands, search) {
@@ -44,19 +50,18 @@ function infoSwitch(commands, search) {
 
 
 // bands in town function for retrieving info
-function bands(artists) {
-    var artists = search;
-    // console.log(artists);
-    axios.get("https://rest.bandsintown.com/artists/" + artists + "/events?app_id=codingbootcamp")
+function bands(search) {
+    // console.log(search);
+    
+    axios.get("https://rest.bandsintown.com/artists/" + search + "/events?app_id=codingbootcamp")
         .then(
-
             function (response) {
+                
                 // console.log(response.data);
                 for (var i = 0; i < response.data.length; i++) {
-                    console.log("\n" + artists);
+                    console.log("\n" + search);
                     console.log("----------");
                     console.log("Venue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + ", " + response.data[i].venue.country + "\nDate of event: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n");
-
                 }
             },
 
@@ -69,25 +74,20 @@ function bands(artists) {
 };
 
 // spotify function for retriveing info
-function songs(songTitle) {
-    search = a.slice(3).join("+");
-    var songTitle;
+function songs(search) {
 
     if (!search) {
-        songTitle = "The+Sign";
-    } else {
-        songTitle = search;
-    }
-    // console.log(songTitle);
+        search = "The+Sign";
+    } 
+    // console.log(search);
 
     // constructor
     var spotify = new Spotify(keys.spotify);
 
     spotify
-        .request('https://api.spotify.com/v1/search?q=' + songTitle + '&type=track&market=us&limit=10')
+        .request('https://api.spotify.com/v1/search?q=' + search + '&type=track&market=us&limit=10')
         .then(function (data) {
-            // console.log(data);
-            // console.log(data.tracks.items[0]);
+
             for (var i = 0; i < data.tracks.items.length; i++) {
                 console.log(i);
                 console.log("---------");
@@ -101,23 +101,16 @@ function songs(songTitle) {
 };
 
 // OMDB info retrieval and display
-function movies(title) {
-    search = a.slice(3).join("+");
-    var title;
+function movies(search) {
 
     if (!search) {
-        title = "Mr Nobody";
-    } else {
-        title = search;
+        search = "Mr Nobody";
     }
 
-    // console.log(title);
-
     axios
-        .get("http://www.omdbapi.com/?apikey=trilogy&t=" + title + "&plot=short&limit=4")
+        .get("http://www.omdbapi.com/?apikey=trilogy&t=" + search + "&plot=short&limit=4")
         .then(
             function (response) {
-                // console.log(response.data);
 
                 console.log("\nTitle: " + response.data.Title);
                 console.log("--------------\n");
@@ -126,7 +119,7 @@ function movies(title) {
         )
 };
 
-
+// do what it says readfile command and argument
 function random() {
     fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
@@ -137,8 +130,13 @@ function random() {
 
         var arr = data.split(",");
         console.log(arr);
+        if(arr.length == 2){
+            runInfo(arr[0], arr[1])
+        } else if(arr.length == [1]){
+            runInfo(arr[0])
+        }; 
 
     })
 };
 
-infoSwitch(commands, search);
+runInfo(commands, search);
