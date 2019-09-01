@@ -4,7 +4,7 @@ LIRI Bot is a CLI App providing the an entertainment search service in one simpl
 
 ### Overview
 
-* Utilizing multiple npm packages to assit in running API calls and `moment.js`. Packages inculde:
+* Utilizing multiple npm packages to assit in running API calls and <span style="color:red">`moment.js`</span>. Packages inculde:
     * Node-spotify-api
     * Axios
     * Moment
