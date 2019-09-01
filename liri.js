@@ -22,24 +22,26 @@ var a = process.argv;
 var commands = a[2];
 var search = a.slice(3).join("");
 
-if (!commands) {
-    console.log("\nSorry that is an unrecognized command. Please try concert-this, spotify-this-song, movie-this or do-what-it-says.\n");
-};
+// switching between arguments
+function infoSwitch(commands, search) {
+    switch (commands) {
+        case "concert-this":
+            bands(search);
+            break;
+        case "spotify-this-song":
+            songs(search);
+            break;
+        case "movie-this":
+            movies(search);
+            break;
+        case "do-what-it-says":
+            random();
+            break;
+        default:
+            console.log("LIRI did not understand. Try again.");
+    };
+}
 
-switch (commands) {
-    case "concert-this":
-        bands();
-        break;
-    case "spotify-this-song":
-        songs();
-        break;
-    case "movie-this":
-        movies();
-        break;
-    case "do-what-it-says":
-        songDefault();
-        break;
-};
 
 // bands in town function for retrieving info
 function bands(artists) {
@@ -87,8 +89,9 @@ function songs(songTitle) {
             // console.log(data);
             // console.log(data.tracks.items[0]);
             for (var i = 0; i < data.tracks.items.length; i++) {
-                console.log(data.tracks.items[i].name + "\n---------");
-                console.log("Artist(s): " + data.tracks.items[i].artists[0].name + "\nAlbum: " + data.tracks.items[i].album.name + "\nPreview Link: " + data.tracks.items[i].preview_url + "\n");
+                console.log(i);
+                console.log("---------");
+                console.log("Artist(s): " + data.tracks.items[i].artists[0].name + "\nSong Title: " + data.tracks.items[i].name + "\nAlbum: " + data.tracks.items[i].album.name + "\nPreview Link: " + data.tracks.items[i].preview_url + "\n---------\n");
             }
         })
         .catch(function (err) {
@@ -122,3 +125,20 @@ function movies(title) {
             }
         )
 };
+
+
+function random() {
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+
+        console.log(data);
+
+        var arr = data.split(",");
+        console.log(arr);
+
+    })
+};
+
+infoSwitch(commands, search);
