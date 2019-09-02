@@ -37,19 +37,19 @@ LIRI Bot is a CLI Node App providing the an entertainment search service in one 
         ```js
         node liri.js movie-this <movie title>
         ```
-        Link to video: (https://github.com/bltarkany/liri-node-app/blob/master/images/movie.mp4)
+        Link to video: (https://drive.google.com/file/d/1D7qMhEmW_VCggYzCiR45cp0Mx03T6ZHZ/view?usp=sharing)
 
     * To search Spotify for songs:
         ```js
         node liri.js spotify-this-song <song title>
         ```
-        ![spotifyvideo](https://github.com/bltarkany/liri-node-app/blob/master/images/movie.mp4)
+        Link to video: (https://drive.google.com/file/d/12X1K3wWQ7JoOwD1WlGLA8CkTzXriF9fN/view?usp=sharing)
 
     * To search info on random.txt:
         ```js
         node liri.js do-what-it-says
         ```
-        ![dowhatvideo](https://github.com/bltarkany/liri-node-app/blob/master/images/dowhat.mp4)
+        Link to video: (https://drive.google.com/file/d/10cXdLXvLl-xqBK4oVwfifk4Wb8VWfip4/view?usp=sharing)
 
 ### Creating your own LIRI-Bot 
 
