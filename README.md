@@ -25,31 +25,38 @@ LIRI Bot is a CLI Node App providing the an entertainment search service in one 
 1. Begin by `npm install` all necessary packages
 2. Create a `SPOTIFY_ID` and `SPOTIFY_SECRET` both of which can be added to keys.js using the node-spotify-api synatax
     * (https://developer.spotify.com/documentation/web-api/quick-start/)
-    * follow the link to set up your account and ids 
+    * follow the link to set up your account and ids. 
+    * ```js
+      var spotify = new Spotify({
+      id: <your spotify client id>,
+      secret: <your spotify client secret>
+      });
+      ```
+
 3. From the command line run: 
     * To search Bands in Town for concerts:
         ```js
         node liri.js concert-this <artist/band name>
         ```
-        Link to video: (https://drive.google.com/file/d/13CEjHPQxXGL3wbuIUwGau22ZB4_z_WPJ/view?usp=sharing)
+        Demo video: (https://drive.google.com/file/d/13CEjHPQxXGL3wbuIUwGau22ZB4_z_WPJ/view?usp=sharing)
 
     * To search OMDB for movies:
         ```js
         node liri.js movie-this <movie title>
         ```
-        Link to video: (https://drive.google.com/file/d/1D7qMhEmW_VCggYzCiR45cp0Mx03T6ZHZ/view?usp=sharing)
+        Demo video: (https://drive.google.com/file/d/1D7qMhEmW_VCggYzCiR45cp0Mx03T6ZHZ/view?usp=sharing)
 
     * To search Spotify for songs:
         ```js
         node liri.js spotify-this-song <song title>
         ```
-        Link to video: (https://drive.google.com/file/d/12X1K3wWQ7JoOwD1WlGLA8CkTzXriF9fN/view?usp=sharing)
+        Demo video: (https://drive.google.com/file/d/12X1K3wWQ7JoOwD1WlGLA8CkTzXriF9fN/view?usp=sharing)
 
     * To search info on random.txt:
         ```js
         node liri.js do-what-it-says
         ```
-        Link to video: (https://drive.google.com/file/d/10cXdLXvLl-xqBK4oVwfifk4Wb8VWfip4/view?usp=sharing)
+        Demo video: (https://drive.google.com/file/d/10cXdLXvLl-xqBK4oVwfifk4Wb8VWfip4/view?usp=sharing)
 
 ### Creating your own LIRI-Bot 
 
@@ -60,9 +67,10 @@ LIRI Bot is a CLI Node App providing the an entertainment search service in one 
 
 #### Instructions
 
-1. Navigate to the root of your project and run `npm init -y` &mdash; this will initialize a `package.json` file for your project. The `package.json` file is required for installing third party npm packages and saving their version numbers. If you fail to initialize a `package.json` file, it will be troublesome, and at times almost impossible for anyone else to run your code after cloning your project.
+1. Access the root of your project and run `npm init -y` doing so will initialize a `package.json` file for your project. The `package.json` file is required for installing third party npm packages and saving their version numbers. without the `package.json` file, it will be difficult and at times almost impossible for anyone else to run your code after cloning your project.
 
-2. Make a `.gitignore` file and add the following lines to it. This will tell git not to track these files, and thus they won't be committed to Github.
+2. Make a `.gitignore` file and add the following lines to it. This will prevent Github from tracking or commiting them onto a public space.
+(`.env` will hide your Spotify ID and secret, .DS_Store is a file that stores macOS custom files, hiding node_modules allows for faster run times)
 
 ```
 node_modules
@@ -70,7 +78,7 @@ node_modules
 .env
 ```
 
-3. To retrieve the data that will power this app, you'll need to send requests using the `axios` package to the Bands in Town, Spotify and OMDB APIs. You'll find these Node packages crucial for your app.
+3. Data will be pulled from multiple sites. You will need to send requests using the `axios` package to the Bands in Town and OMDB APIs. Spotify will use the `node_spotifyapi` package. 
 
    * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
 
@@ -89,7 +97,8 @@ node_modules
 
 4. Make a JavaScript file named `keys.js`.
 
-* Inside keys.js your file will look like this:
+* Inside keys.js include the following:
+  (this will ensure that your Spotify ID and Secret are kept private)
 
 ```js
 console.log('this is loaded');
@@ -100,7 +109,8 @@ exports.spotify = {
 };
 ```
 
-5. Next, create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes) once you have them:
+5. Create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes) once you have them:
+  (The dotenv npm package will allow this info to be readable without any extra syntax)
 
 ```js
 # Spotify API keys
@@ -117,6 +127,7 @@ SPOTIFY_SECRET=your-spotify-secret
 6. Make a file called `random.txt`.
 
    * Inside of `random.txt` put the following in with no extra characters or white space:
+      * This will be called from the command line to be searched
 
      * spotify-this-song,"I Want it That Way"
 
@@ -174,7 +185,7 @@ require("dotenv").config();
 
      * The album that the song is from
 
-   * If no song is provided then your program will default to "The Sign" by Ace of Base.
+   * If no song is provided then your program will default to "The Sign" by Ace of Base(can be achieved via conditionals).
 
    * You will utilize the [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package in order to retrieve song information from the Spotify API.
 
@@ -194,7 +205,7 @@ require("dotenv").config();
        * Actors in the movie.
      ```
 
-   * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+   * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.' (can be achieved via conditionals)
 
    * You'll use the `axios` package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API key. You may use `trilogy`.
 
@@ -204,7 +215,7 @@ require("dotenv").config();
 
      * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
 
-     * Edit the text in random.txt to test out the feature for movie-this and concert-this.
+     * Edit the text in random.txt to test out the feature for movie-this and concert-this -- HINT: Bands in Town will need some adjustments
 
 #### BONUS
 
