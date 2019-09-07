@@ -25,12 +25,12 @@ LIRI Bot is a CLI Node App providing the an entertainment search service in one 
 1. Begin by `npm install` all necessary packages
 2. Create a `SPOTIFY_ID` and `SPOTIFY_SECRET` both of which can be added to keys.js using the node-spotify-api synatax
     * (https://developer.spotify.com/documentation/web-api/quick-start/)
-    * follow the link to set up your account and ids. 
+    * follow the link to set up your account and ids. Below is the update for keys.js:
     * ```js
-      var spotify = new Spotify({
+      exports.spotify = {
       id: <your spotify client id>,
       secret: <your spotify client secret>
-      });
+      };
       ```
 
 3. From the command line run: 
