@@ -38,7 +38,7 @@ LIRI Bot is a CLI Node App providing the an entertainment search service in one 
         ```js
         node liri.js concert-this <artist/band name>
         ```
-        Demo video: (https://drive.google.com/file/d/13CEjHPQxXGL3wbuIUwGau22ZB4_z_WPJ/view?usp=sharing)
+        Demo video: ![concert-this](https://giphy.com/gifs/S2w266GlE9Ipuv47rq)
 
     * To search OMDB for movies:
         ```js
