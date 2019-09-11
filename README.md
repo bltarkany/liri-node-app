@@ -38,25 +38,33 @@ LIRI Bot is a CLI Node App providing the an entertainment search service in one 
         ```js
         node liri.js concert-this <artist/band name>
         ```
-        Demo video: ![concert-this](https://media.giphy.com/media/S2w266GlE9Ipuv47rq/giphy.gif)
+        #### Demo video: 
+        
+        ![concert-this](https://media.giphy.com/media/S2w266GlE9Ipuv47rq/giphy.gif)
 
     * To search OMDB for movies:
         ```js
         node liri.js movie-this <movie title>
         ```
-        Demo video: (https://drive.google.com/file/d/1D7qMhEmW_VCggYzCiR45cp0Mx03T6ZHZ/view?usp=sharing)
+        #### Demo video: 
+        
+        ![movie-this](https://media.giphy.com/media/l1I4m1lUM4Rb9U97lT/giphy.gif)
 
     * To search Spotify for songs:
         ```js
         node liri.js spotify-this-song <song title>
         ```
-        Demo video: (https://drive.google.com/file/d/12X1K3wWQ7JoOwD1WlGLA8CkTzXriF9fN/view?usp=sharing)
+        #### Demo video: 
+        
+        ![spotify-this-song](https://media.giphy.com/media/MaJQ3UTDLfD7cv3XA9/giphy.gif)
 
     * To search info on random.txt:
         ```js
         node liri.js do-what-it-says
         ```
-        Demo video: (https://drive.google.com/file/d/10cXdLXvLl-xqBK4oVwfifk4Wb8VWfip4/view?usp=sharing)
+        #### Demo video: 
+        
+        ![do-what-it-says](https://media.giphy.com/media/SRkh5LuJjpOZ58dz62/giphy.gif)
 
 ### Creating your own LIRI-Bot 
 
